@@ -18,15 +18,19 @@ pub fn binder_device_path() -> PathBuf {
     )
 }
 
-impl PionBinderDevice {
-    pub fn new() -> Self {
+impl Default for PionBinderDevice {
+    fn default() -> Self {
         let path = binder_device_path();
         let dev = BinderDevice::new(path).unwrap();
         Self { dev }
     }
+}
+
+impl PionBinderDevice {
     pub fn from_fd(fd: impl Into<OwnedFd>) -> Self {
-        let dev = BinderDevice::from_fd(fd);
-        Self { dev }
+        Self {
+            dev: BinderDevice::from_fd(fd),
+        }
     }
     pub async fn bind_binder_ref_to_file(
         &self,

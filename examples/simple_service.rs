@@ -65,7 +65,7 @@ async fn main() {
         )
         .with_thread_ids(true)
         .init();
-    let dev = PionBinderDevice::new();
+    let dev = PionBinderDevice::default();
 
     let file_path = Path::new("/tmp/binder_echo_test.bind");
     let file = std::fs::File::create(file_path).unwrap();
@@ -93,7 +93,9 @@ async fn main() {
             .transact_blocking(&port, ECHO_CODE, payload)
             .inspect_err(|err| error!("get error from transact_blocking: {err}"))
         else {
-            loop {}
+            loop {
+                std::thread::sleep(std::time::Duration::from_millis(100));
+            }
         };
         v
     })
