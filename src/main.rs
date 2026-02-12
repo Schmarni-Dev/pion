@@ -61,9 +61,14 @@ impl TransactionHandler for Pion {
                     }
 
                     match entry {
-                        Entry::Occupied(_) => {
-                            builder.push_bytes(c"couldn't register object".to_bytes_with_nul());
-                            warn!("Tried to register BinderRef on existing Fd");
+                        Entry::Occupied(e) => {
+                            if !e.get().alive() {
+                                e.replace_entry(handle);
+                                info!("Registered BinderRef (replaced dead handle)");
+                            } else {
+                                builder.push_bytes(c"couldn't register object".to_bytes_with_nul());
+                                warn!("Tried to register BinderRef on existing Fd");
+                            }
                         }
                         Entry::Vacant(entry) => {
                             entry.insert(handle);
@@ -80,7 +85,14 @@ impl TransactionHandler for Pion {
                     match entry {
                         Entry::Occupied(entry) => {
                             let binder_ref = entry.get();
-                            builder.push_binder_ref(binder_ref);
+                            if binder_ref.alive() {
+                                builder.push_binder_ref(binder_ref);
+                            } else {
+                                builder.push_bytes(
+                                    c"couldn't find object, object is dead".to_bytes_with_nul(),
+                                );
+                                warn!("Failed to get object, dead");
+                            }
                         }
                         Entry::Vacant(_) => {
                             builder.push_bytes(c"couldn't find object".to_bytes_with_nul());
