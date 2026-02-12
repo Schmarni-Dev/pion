@@ -28,7 +28,7 @@ impl PionBinderDevice {
         let dev = BinderDevice::from_fd(fd);
         Self { dev }
     }
-    pub async fn bind_ref_to_file(
+    pub async fn bind_binder_ref_to_file(
         &self,
         file: File,
         binder_ref: BinderObjectOrRef,
