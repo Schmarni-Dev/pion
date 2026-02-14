@@ -1,6 +1,5 @@
 use binderbinder::{
     TransactionHandler,
-    binder_object::BinderObjectOrRef,
     device::Transaction,
     payload::{BinderObjectType, PayloadBuilder},
 };
@@ -72,9 +71,7 @@ async fn main() {
     file.lock().unwrap();
 
     let echo_port = dev.register_object(EchoPort);
-    dev.bind_binder_ref_to_file(file, BinderObjectOrRef::Object(echo_port))
-        .await
-        .unwrap();
+    dev.bind_binder_ref_to_file(file, &echo_port).await.unwrap();
 
     let port = dev
         .get_binder_ref_from_file(
