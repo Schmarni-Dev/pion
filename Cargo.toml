@@ -1,12 +1,12 @@
 [package]
-name = "pion"
+name = "pion-binder"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
 async-trait = "0.1.89"
 dashmap = "6.1.0"
-binderbinder.path = "../binderbinder"
+binderbinder.git = "https://github.com/technobaboo/binderbinder"
 tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
 tracing = "0.1.44"
 tokio = { version = "1.49.0", features = ["rt", "macros", "rt-multi-thread"] }

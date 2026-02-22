@@ -3,7 +3,7 @@ use binderbinder::{
     payload::PayloadBuilder,
 };
 use dashmap::{DashMap, Entry};
-use pion::{EXCHANGE_CODE, PionBinderDevice, REGISTER_CODE, binder_device_path};
+use pion_binder::{EXCHANGE_CODE, PionBinderDevice, REGISTER_CODE, binder_device_path};
 use std::{
     fs::File,
     os::{

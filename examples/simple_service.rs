@@ -3,7 +3,7 @@ use binderbinder::{
     device::Transaction,
     payload::{BinderObjectType, PayloadBuilder},
 };
-use pion::*;
+use pion_binder::PionBinderDevice;
 use std::{fs::File, path::Path, str::FromStr as _};
 use tokio::task::spawn_blocking;
 use tracing::{error, info};
