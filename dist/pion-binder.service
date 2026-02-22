@@ -1,0 +1,26 @@
+[Unit]
+Description=Binder Context Manager
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/pion-binder
+Environment="RUST_LOG=debug"
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+PrivateMounts=false
+MemoryDenyWriteExecute=true
+RestrictSUIDSGID=true
+ProtectHostname=true
+CapabilityBoundingSet=
+LockPersonality=true
+ProtectKernelTunables=true
+RestrictRealtime=true
+PrivateNetwork=true
+PrivateUsers=true
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectClock=true
+
+[Install]
+WantedBy=default.target
