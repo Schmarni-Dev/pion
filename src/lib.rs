@@ -10,7 +10,7 @@ use tracing::error;
 pub const REGISTER_CODE: u32 = 1;
 pub const EXCHANGE_CODE: u32 = 2;
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct PionBinderDevice {
     dev: Arc<BinderDevice>,
 }

@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 async-trait = "0.1.89"
 dashmap = "6.1.0"
+# binderbinder.path = "../binderbinder"
 binderbinder.git = "https://github.com/technobaboo/binderbinder"
 tracing-subscriber = { version = "0.3.22", features = ["env-filter"] }
 tracing = "0.1.44"

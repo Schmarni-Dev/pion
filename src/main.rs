@@ -16,7 +16,7 @@ use std::{
 use tracing::{error, info, warn};
 use tracing_subscriber::EnvFilter;
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 struct Pion(Arc<DashMap<(u64, u64), BinderObjectOrRef>>);
 impl Pion {
     fn entry<'a>(&'a self, fd: BorrowedFd<'_>) -> Option<Entry<'a, (u64, u64), BinderObjectOrRef>> {

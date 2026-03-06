@@ -11,6 +11,7 @@ use tracing_subscriber::EnvFilter;
 
 const ECHO_CODE: u32 = 1;
 
+#[derive(Debug)]
 pub struct EchoPort;
 impl TransactionHandler for EchoPort {
     async fn handle(&self, mut transaction: Transaction) -> PayloadBuilder<'_> {
