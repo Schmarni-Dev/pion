@@ -1,0 +1,10 @@
+[Unit]
+Description=Binderfs mount
+
+[Mount]
+What=binder
+Type=binder
+Options=defaults
+
+[Install]
+WantedBy=basic.target

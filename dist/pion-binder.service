@@ -4,7 +4,7 @@ Description=Binder Context Manager
 [Service]
 Type=exec
 ExecStart=/usr/bin/pion-binder
-Environment="RUST_LOG=debug"
+Environment="RUST_LOG=info"
 ProtectKernelLogs=true
 ProtectKernelModules=true
 ProtectControlGroups=true
@@ -23,4 +23,6 @@ NoNewPrivileges=true
 ProtectClock=true
 
 [Install]
-WantedBy=default.target
+WantedBy=sysinit.target
+Requires=dev-binderfs.mount
+After=dev-binderfs.mount
